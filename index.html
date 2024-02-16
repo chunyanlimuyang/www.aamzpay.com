@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AA漫展售票平台</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }
+  nav {
+    background-color: #666;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 10px;
+  }
+  nav a:hover {
+    background-color: #999;
+  }
+  section {
+    padding: 20px;
+  }
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AA漫展售票平台</h1>
+</header>
+
+<nav>
+  <a href="#home">首页</a>
+  <a href="#tickets">购票</a>
+  <a href="#about">关于</a>
+  <a href="#contact">联系我们</a>
+</nav>
+
+<section id="home">
+  <h2>欢迎来到AA漫展售票平台</h2>
+  <p>这里是您购买漫展门票的地方。快来购买您心仪的票吧！</p>
+</section>
+
+<section id="tickets">
+  <h2>购票</h2>
+  <p>请选择您要购买的票种：</p>
+  <ul id="ticketOptions">
+    <!-- 这里将由JavaScript动态添加选项 -->
+  </ul>
+  <form action="pay.html" method="post">
+    <label for="ticketType">选择票种：</label>
+    <select name="ticketType" id="ticketType">
+      <!-- 这里将由JavaScript动态添加选项 -->
+    </select>
+    <br><br>
+    <label for="quantity">购买数量：</label>
+    <input type="number" name="quantity" id="quantity" min="1" value="1">
+    <br><br>
+    <input type="submit" value="购买">
+  </form>
+  <p><strong>备注：</strong>5月1号00:00之前只能购买预售票，5月1号00:00之后一律都是现场票。网页购票不支持退款，除非超过漫展时间未检票。</p>
+</section>
+
+<section id="about">
+  <h2>关于</h2>
+  <p>AA漫展售票平台致力于为您提供最好的漫展购票体验。</p>
+</section>
+
+<section id="contact">
+  <h2>联系我们</h2>
+  <p>如果您有任何问题或建议，请通过以下方式联系我们：</p>
+  <p>Email: info@comiccontickets.com</p>
+  <p>电话：123-456-7890</p>
+</section>
+
+<footer>
+  <p>版权所有 © AA漫展售票平台</p>
+</footer>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var ticketOptions = document.getElementById('ticketOptions');
+    var ticketTypeSelect = document.getElementById('ticketType');
+
+    // 获取当前时间
+    var currentDate = new Date();
+    var mayFirst = new Date('2024-05-01T00:00:00');
+
+    // 检查当前时间，动态添加选项
+    if (currentDate < mayFirst) {
+      var presaleOption = document.createElement('option');
+      presaleOption.value = 'presale';
+      presaleOption.textContent = '预售票 - 40元';
+      ticketOptions.appendChild(document.createElement('li')).appendChild(document.createTextNode('预售票 - 40元'));
+      ticketTypeSelect.appendChild(presaleOption);
+    } else {
+      var onsiteOption = document.createElement('option');
+      onsiteOption.value = 'onsite';
+      onsiteOption.textContent = '现场票 - 45元';
+      ticketOptions.appendChild(document.createElement('li')).appendChild(document.createTextNode('现场票 - 45元'));
+      ticketTypeSelect.appendChild(onsiteOption);
+    }
+  });
+</script>
+
+</body>
+</html>
